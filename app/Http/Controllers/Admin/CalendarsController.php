@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
+use App\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -12,6 +14,9 @@ class CalendarsController extends Controller
         if (! Gate::allows('calendar_access')) {
             return abort(401);
         }
-        return view('admin.calendars.index');
+
+        $appointments = Appointment::all();
+
+        return view('admin.calendars.index', compact('appointments'));
     }
 }
