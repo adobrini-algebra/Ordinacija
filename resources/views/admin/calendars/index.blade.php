@@ -3,10 +3,13 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.appointments.title')</h3>
     @can('appointment_create')
-    <p>
-        <a href="{{ route('admin.appointments.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
 
-    </p>
+        <a href="{{ route('admin.appointments.create') }}" class="btn btn-primary">Add new appointment</a>
+        <div style="float: right;">
+            <div class="btn btn-success">Appointments completed</div>
+            <div class="btn btn-danger">Not completed</div>
+        </div>
+
     @endcan
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.1/fullcalendar.min.css">
@@ -50,7 +53,8 @@
                             title : '{{ $appointment->client->first_name . ' ' . $appointment->client->last_name }}',
                             start : '{{ $appointment->start_time }}',
                             end : '{{ $appointment->end_time }}',
-                            url : '{{ route('admin.appointments.edit', $appointment->id) }}'
+                            url : '{{ route('admin.appointments.edit', $appointment->id) }}',
+                            backgroundColor: '{{ !(\App\Appointment::where('id', $appointment->id)->value('order_complete')) ? 'red' : 'green' }}'
                         },
                     @endforeach
                 ]

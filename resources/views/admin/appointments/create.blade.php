@@ -8,7 +8,7 @@
         <div class="panel-heading">
             @lang('quickadmin.qa_create')
         </div>
-        
+
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
@@ -59,7 +59,7 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -69,13 +69,16 @@
 
 @section('javascript')
     @parent
-    <script src="{{ url('quickadmin/js') }}/timepicker.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>    <script>
+    <script src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
+    <script>
         $('.datetime').datetimepicker({
             autoclose: true,
             dateFormat: "{{ config('app.date_format_js') }}",
-            timeFormat: "HH:mm:ss"
+            timeFormat: "HH:mm:ss",
+            hourMin: 8,
+	        hourMax: 16,
+            stepMinute: 5
         });
     </script>
 

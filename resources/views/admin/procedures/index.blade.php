@@ -6,11 +6,11 @@
     @can('procedure_create')
     <p>
         <a href="{{ route('admin.procedures.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+
     </p>
     @endcan
 
-    
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -29,11 +29,11 @@
                         <th>@lang('quickadmin.procedures.fields.name')</th>
                         <th>@lang('quickadmin.procedures.fields.price')</th>
                         <th>@lang('quickadmin.procedures.fields.duration')</th>
-                                                <th>&nbsp;</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($procedures) > 0)
                         @foreach ($procedures as $procedure)
@@ -44,7 +44,7 @@
 
                                 <td field-key='code'>{{ $procedure->code }}</td>
                                 <td field-key='name'>{{ $procedure->name }}</td>
-                                <td field-key='price'>{{ $procedure->price }}</td>
+                                <td field-key='price'>{{ number_format($procedure->price, 2). ' kn' }}</td>
                                 <td field-key='duration'>{{ $procedure->duration }}</td>
                                                                 <td>
                                     @can('procedure_view')
@@ -54,7 +54,7 @@
                                     <a href="{{ route('admin.procedures.edit',[$procedure->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('procedure_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
@@ -77,7 +77,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('procedure_delete')
             window.route_mass_crud_entries_destroy = '{{ route('admin.procedures.mass_destroy') }}';

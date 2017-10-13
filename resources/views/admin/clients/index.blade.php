@@ -6,11 +6,11 @@
     @can('client_create')
     <p>
         <a href="{{ route('admin.clients.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
-        
+
     </p>
     @endcan
 
-    
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -32,11 +32,11 @@
                         <th>@lang('quickadmin.clients.fields.address')</th>
                         <th>@lang('quickadmin.clients.fields.city')</th>
                         <th>@lang('quickadmin.clients.fields.email')</th>
-                                                <th>&nbsp;</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($clients) > 0)
                         @foreach ($clients as $client)
@@ -60,7 +60,7 @@
                                     <a href="{{ route('admin.clients.edit',[$client->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('client_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
@@ -83,7 +83,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         @can('client_delete')
             window.route_mass_crud_entries_destroy = '{{ route('admin.clients.mass_destroy') }}';

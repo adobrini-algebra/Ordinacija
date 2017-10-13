@@ -2,7 +2,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.clients.title')</h3>
-    
+
     {!! Form::model($client, ['method' => 'PUT', 'route' => ['admin.clients.update', $client->id]]) !!}
 
     <div class="panel panel-default">
@@ -95,7 +95,7 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -108,6 +108,7 @@
     <script>
         $('.date').datepicker({
             autoclose: true,
+            changeYear: true,
             dateFormat: "{{ config('app.date_format_js') }}"
         });
     </script>

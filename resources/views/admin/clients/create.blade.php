@@ -8,7 +8,7 @@
         <div class="panel-heading">
             @lang('quickadmin.qa_create')
         </div>
-        
+
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
@@ -94,7 +94,7 @@
                     @endif
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -107,7 +107,9 @@
     <script>
         $('.date').datepicker({
             autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}"
+            changeYear: true,
+            dateFormat: "{{ config('app.date_format_js') }}",
+            defaultDate: "-30y",
         });
     </script>
 
