@@ -10,7 +10,7 @@ return [
 		'clients' => [		'title' => 'Clients',		'fields' => [			'first-name' => 'First name',			'last-name' => 'Last name',			'phone' => 'Phone',			'date-of-birth' => 'Date of birth',			'address' => 'Address',			'city' => 'City',			'email' => 'Email',		],	],
 		'appointments' => [		'title' => 'Appointments',		'fields' => [		],	],
 		'procedures' => [		'title' => 'Procedures',		'fields' => [			'code' => 'Code',			'name' => 'Name',			'price' => 'Price',			'duration' => 'Duration',		],	],
-		'appointments' => [		'title' => 'Appointments',		'fields' => [			'client' => 'Client',			'procedure' => 'Procedure',			'start-time' => 'Start time',			'order-complete' => 'Order complete',		],	],
+		'appointments' => [		'title' => 'Appointments',		'fields' => [			'client' => 'Client',			'procedure' => 'Procedure',			'start-time' => 'Start time',		'end-time' => 'End time'   ,	'order-complete' => 'Order complete',		],	],
 		'calendar' => [		'title' => 'Calendar',		'fields' => [		],	],
 	'qa_create' => 'Create',
 	'qa_save' => 'Save',

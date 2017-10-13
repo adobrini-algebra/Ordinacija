@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAppointmentsRequest;
 use App\Http\Requests\Admin\UpdateAppointmentsRequest;
+use Carbon\Carbon;
 
 class AppointmentsController extends Controller
 {
@@ -38,7 +39,7 @@ class AppointmentsController extends Controller
         if (! Gate::allows('appointment_create')) {
             return abort(401);
         }
-        
+
         $clients = \App\Client::get()->pluck('first_name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $procedures = \App\Procedure::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 
@@ -56,8 +57,24 @@ class AppointmentsController extends Controller
         if (! Gate::allows('appointment_create')) {
             return abort(401);
         }
-        $appointment = Appointment::create($request->all());
 
+        $startTime = Carbon::createFromFormat(config('app.date_format') . ' H:i:s', $request->start_time);
+
+        $duration = \App\Procedure::where('id', $request->procedure_id)->value('duration');
+
+        $hours = Carbon::createFromFormat('H:i:s', $duration)->format('H');
+        $minutes = Carbon::createFromFormat('H:i:s', $duration)->format('i');
+
+        $endTime = $startTime->addHours($hours)->addMinutes($minutes);
+
+        $appointment = new Appointment;
+
+        $appointment->client_id = $request->client_id;
+        $appointment->start_time = $request->start_time;
+        $appointment->procedure_id =  $request->procedure_id;
+        $appointment->end_time = $endTime;
+        $appointment->order_complete = $request->order_complete;
+        $appointment->save();
 
 
         return redirect()->route('admin.appointments.index');
@@ -75,7 +92,7 @@ class AppointmentsController extends Controller
         if (! Gate::allows('appointment_edit')) {
             return abort(401);
         }
-        
+
         $clients = \App\Client::get()->pluck('first_name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $procedures = \App\Procedure::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
 

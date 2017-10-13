@@ -16,6 +16,7 @@ class Create1507885152AppointmentsTable extends Migration
             Schema::create('appointments', function (Blueprint $table) {
                 $table->increments('id');
                 $table->datetime('start_time');
+                $table->datetime('end_time');
                 $table->tinyInteger('order_complete')->default(0);
                 $table->timestamps();
 
