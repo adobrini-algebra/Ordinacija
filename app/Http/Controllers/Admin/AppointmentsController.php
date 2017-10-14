@@ -24,7 +24,7 @@ class AppointmentsController extends Controller
         }
 
 
-                $appointments = Appointment::all();
+                $appointments = Appointment::orderBy('start_time')->get();
 
         return view('admin.appointments.index', compact('appointments'));
     }
@@ -113,10 +113,24 @@ class AppointmentsController extends Controller
         if (! Gate::allows('appointment_edit')) {
             return abort(401);
         }
+
         $appointment = Appointment::findOrFail($id);
-        $appointment->update($request->all());
 
+        $startTime = Carbon::createFromFormat(config('app.date_format') . ' H:i:s', $request->start_time);
 
+        $duration = \App\Procedure::where('id', $request->procedure_id)->value('duration');
+
+        $hours = Carbon::createFromFormat('H:i:s', $duration)->format('H');
+        $minutes = Carbon::createFromFormat('H:i:s', $duration)->format('i');
+
+        $endTime = $startTime->addHours($hours)->addMinutes($minutes);
+
+        $appointment->client_id = $request->client_id;
+        $appointment->start_time = $request->start_time;
+        $appointment->procedure_id =  $request->procedure_id;
+        $appointment->end_time = $endTime;
+        $appointment->order_complete = $request->order_complete;
+        $appointment->save();
 
         return redirect()->route('admin.appointments.index');
     }
