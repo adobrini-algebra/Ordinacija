@@ -1,6 +1,12 @@
-##Stomatološka Ordinacija
+## Stomatološka Ordinacija
 
 Laravel project
+
+Technologies used:
+PHP, MySql, Laravel
+
+Plugins:
+Full Calendar, jQuerry Datepicker, Bootstrap, AdminLTE
 
 ## Installation
 **Install the Package Via Composer:**
@@ -9,7 +15,9 @@ $ composer install
 ```
 
 **Create ENV file:**
+```shell
 Rename .env.example to .env
+```
 
 **Generate App Key:**
 ```shell
