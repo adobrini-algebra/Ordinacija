@@ -43,7 +43,7 @@
                                 @endcan
 
                                 <td field-key='code'>{{ $procedure->code }}</td>
-                                <td field-key='name'>{{ $procedure->name }}</td>
+                                <td field-key='name'><a href="{{ route('admin.procedures.show',[$procedure->id]) }}">{{ $procedure->name }}</a></td>
                                 <td field-key='price'>{{ number_format($procedure->price, 2). ' kn' }}</td>
                                 <td field-key='duration'>{{ $procedure->duration }}</td>
                                                                 <td>

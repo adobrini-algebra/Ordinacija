@@ -65,7 +65,7 @@ class AppointmentsController extends Controller
         $hours = Carbon::createFromFormat('H:i:s', $duration)->format('H');
         $minutes = Carbon::createFromFormat('H:i:s', $duration)->format('i');
 
-        $endTime = $startTime->addHours($hours)->addMinutes($minutes);
+        $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
 
         $appointment = new Appointment;
 
@@ -77,7 +77,7 @@ class AppointmentsController extends Controller
         $appointment->save();
 
 
-        return redirect()->route('admin.appointments.index');
+        return redirect()->route('admin.calendars.index');
     }
 
 
@@ -114,8 +114,6 @@ class AppointmentsController extends Controller
             return abort(401);
         }
 
-        $appointment = Appointment::findOrFail($id);
-
         $startTime = Carbon::createFromFormat(config('app.date_format') . ' H:i:s', $request->start_time);
 
         $duration = \App\Procedure::where('id', $request->procedure_id)->value('duration');
@@ -125,6 +123,8 @@ class AppointmentsController extends Controller
 
         $endTime = $startTime->addHours($hours)->addMinutes($minutes);
 
+        $appointment = Appointment::findOrFail($id);
+
         $appointment->client_id = $request->client_id;
         $appointment->start_time = $request->start_time;
         $appointment->procedure_id =  $request->procedure_id;
@@ -132,7 +132,7 @@ class AppointmentsController extends Controller
         $appointment->order_complete = $request->order_complete;
         $appointment->save();
 
-        return redirect()->route('admin.appointments.index');
+        return redirect()->route('admin.calendars.index');
     }
 
 

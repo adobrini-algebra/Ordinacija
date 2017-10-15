@@ -43,7 +43,7 @@
                 <tbody>
                     @if (count($appointments) > 0)
                         @foreach ($appointments as $appointment)
-                            <tr data-entry-id="{{ $appointment->id }}">
+                            <tr data-entry-id="{{ $appointment->id }}" style="{{ $appointment->order_complete ? print 'background:rgba(0,255,0,0.3);' : print 'background:rgba(255,0,0,0.3);' }}">
                                 @can('appointment_delete')
                                     <td></td>
                                 @endcan
