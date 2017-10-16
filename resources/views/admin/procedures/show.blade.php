@@ -29,10 +29,7 @@
                             <td field-key='duration'>{{ $procedure->duration }}</td>
                         </tr>
                         <?php
-                            $accomplished = 0;
-                            $not_accomplished = 0;
-                            $total_gain = 0;
-                            $left_to_collect = 0;
+                            $accomplished = $not_accomplished = $total_gain = $left_to_collect = 0;
                             foreach ($appointments as $appointment) {
                                 if ($appointment->order_complete) {
                                     $accomplished++;

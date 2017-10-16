@@ -40,6 +40,34 @@
                             <th>@lang('quickadmin.clients.fields.email')</th>
                             <td field-key='email'>{{ $client->email }}</td>
                         </tr>
+                        <?php
+                            $accomplished = $not_accomplished = $payments_received = $open_receipts = 0;
+                            foreach ($appointments as $appointment) {
+                                if ($appointment->order_complete) {
+                                    $accomplished++;
+                                    $payments_received += $appointment->procedure->price;
+                                }else {
+                                    $not_accomplished++;
+                                    $open_receipts += $appointment->procedure->price;
+                                }
+                            }
+                         ?>
+                        <tr>
+                            <th>Appointments finished</th>
+                            <td>{{ $accomplished }}<td>
+                        </tr>
+                        <tr>
+                            <th>Appointments pending</th>
+                            <td>{{ $not_accomplished }}</td>
+                        </tr>
+                        <tr>
+                            <th>Payments received</th>
+                            <td>{{ number_format($payments_received, 2). ' kn' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Open receipts</th>
+                            <td>{{ number_format($open_receipts, 2). ' kn' }}</td>
+                        </tr>
                     </table>
                 </div>
             </div><!-- Nav tabs -->
