@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2017 at 10:01 PM
+-- Generation Time: Oct 17, 2017 at 04:20 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `stomatoloska_ordinacija`
 --
-CREATE DATABASE IF NOT EXISTS `stomatoloska_ordinacija` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `stomatoloska_ordinacija`;
 
 -- --------------------------------------------------------
 
@@ -326,7 +324,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
-(1, 'Admin', 'admin@admin.com', '$2y$10$K1e68o49M6822Y1qw6Rese5zzBoTYJUDxX3PEmvuRrAnCDC8boa1u', '', '2017-10-13 09:52:02', '2017-10-13 09:52:02', 1);
+(1, 'Admin', 'admin@admin.com', '$2y$10$K1e68o49M6822Y1qw6Rese5zzBoTYJUDxX3PEmvuRrAnCDC8boa1u', 'rALLwXhgql5cJa5tEeDQbecXMke0nHUzjrBnlKhPcBc5SWcbv2OtNEjPbM3K', '2017-10-13 09:52:02', '2017-10-13 09:52:02', 1);
 
 -- --------------------------------------------------------
 
@@ -338,6 +336,7 @@ CREATE TABLE `working_hours` (
   `id` int(10) UNSIGNED NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
+  `selected_time` tinyint(4) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -346,9 +345,9 @@ CREATE TABLE `working_hours` (
 -- Dumping data for table `working_hours`
 --
 
-INSERT INTO `working_hours` (`id`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
-(1, '08:00:00', '16:00:00', '2017-10-13 09:52:02', '2017-10-13 09:52:02'),
-(2, '07:00:00', '15:00:00', '2017-10-13 09:55:40', '2017-10-13 09:55:40');
+INSERT INTO `working_hours` (`id`, `start_time`, `end_time`, `selected_time`, `created_at`, `updated_at`) VALUES
+(1, '08:00:00', '16:00:00', 1, '2017-10-13 09:52:02', '2017-10-17 12:12:22'),
+(18, '07:00:00', '15:00:00', 0, '2017-10-17 12:14:26', '2017-10-17 12:14:26');
 
 --
 -- Indexes for dumped tables
@@ -443,7 +442,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `working_hours`
 --
 ALTER TABLE `working_hours`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- Constraints for dumped tables
 --

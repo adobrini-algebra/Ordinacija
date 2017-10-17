@@ -54,7 +54,7 @@
                          ?>
                         <tr>
                             <th>Appointments finished</th>
-                            <td>{{ $accomplished }}<td>
+                            <td>{{ $accomplished }}</td>
                         </tr>
                         <tr>
                             <th>Appointments pending</th>

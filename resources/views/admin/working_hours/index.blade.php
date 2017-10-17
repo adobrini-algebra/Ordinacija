@@ -27,6 +27,7 @@
 
                         <th>@lang('quickadmin.working-hours.fields.start-time')</th>
                         <th>@lang('quickadmin.working-hours.fields.end-time')</th>
+                        <th>Current working Hours</th>
                         <th>Action</th>
 
                     </tr>
@@ -35,14 +36,15 @@
                 <tbody>
                     @if (count($working_hours) > 0)
                         @foreach ($working_hours as $working_hour)
-                            <tr data-entry-id="{{ $working_hour->id }}">
+                            <tr data-entry-id="{{ $working_hour->id }}" style="{{ $working_hour->selected_time ? print 'background:rgba(0,255,0,0.3);' : print 'background:rgba(255,0,0,0.3);' }}">
                                 @can('working_hour_delete')
                                     <td></td>
                                 @endcan
 
                                 <td field-key='start_time'>{{ $working_hour->start_time }}</td>
                                 <td field-key='end_time'>{{ $working_hour->end_time }}</td>
-                                                                <td>
+                                <td field-key='selected_time'>{{ Form::checkbox("selected_time", 1, $working_hour->selected_time == 1 ? true : false, ["disabled"]) }}</td>
+                                <td>
                                     @can('working_hour_view')
                                     <a href="{{ route('admin.working_hours.show',[$working_hour->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
@@ -59,7 +61,6 @@
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>
-
                             </tr>
                         @endforeach
                     @else

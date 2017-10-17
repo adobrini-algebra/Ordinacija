@@ -20,6 +20,10 @@
                             <th>@lang('quickadmin.working-hours.fields.end-time')</th>
                             <td field-key='end_time'>{{ $working_hour->end_time }}</td>
                         </tr>
+                        <tr>
+                            <th>Current working Hours</th>
+                            <td field-key='selected_time'>{{ Form::checkbox("selected_time", 1, $working_hour->selected_time == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
                     </table>
                 </div>
             </div>

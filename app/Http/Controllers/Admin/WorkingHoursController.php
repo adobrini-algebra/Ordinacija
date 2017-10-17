@@ -55,7 +55,6 @@ class WorkingHoursController extends Controller
         $working_hour = WorkingHour::create($request->all());
 
 
-
         return redirect()->route('admin.working_hours.index');
     }
 
@@ -90,7 +89,6 @@ class WorkingHoursController extends Controller
         }
         $working_hour = WorkingHour::findOrFail($id);
         $working_hour->update($request->all());
-
 
 
         return redirect()->route('admin.working_hours.index');

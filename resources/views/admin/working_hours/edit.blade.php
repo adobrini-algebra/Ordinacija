@@ -35,6 +35,19 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('selected_time', 'Current working Hours', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('selected_time', 0) !!}
+                    {!! Form::checkbox('selected_time', true, old('selected_time'), []) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('selected_time'))
+                        <p class="help-block">
+                            {{ $errors->first('selected_time') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
 
         </div>
     </div>

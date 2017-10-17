@@ -10,11 +10,12 @@ use Carbon\Carbon;
  * @package App
  * @property time $start_time
  * @property time $end_time
+ * @property tinyInteger $selected_time
 */
 class WorkingHour extends Model
 {
-    protected $fillable = ['start_time', 'end_time'];
-    
+    protected $fillable = ['start_time', 'end_time', 'selected_time'];
+
 
     /**
      * Set attribute to date format
@@ -71,5 +72,5 @@ class WorkingHour extends Model
             return '';
         }
     }
-    
+
 }

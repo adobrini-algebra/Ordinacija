@@ -42,7 +42,7 @@
                          ?>
                         <tr>
                             <th>Accomplished</th>
-                            <td>{{ $accomplished }}<td>
+                            <td>{{ $accomplished }}</td>
                         </tr>
                         <tr>
                             <th>Unaccomplished</th>
